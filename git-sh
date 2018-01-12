@@ -186,14 +186,15 @@ _git_dirty() {
 	if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
 		return 0
 	fi
+	
 	local dirty_marker="`git config gitsh.dirty 2>/dev/null || echo ' *'`"
 
 	if ! git diff --quiet 2>/dev/null ; then
    	    _git_apply_color "$dirty_marker" "color.sh.dirty" "red"
-    elif `git status 2>/dev/null` -gt 0 ; then
+    elif [[ `git status --porcelain 2>/dev/null | wc -l` -gt 0 ]] ; then
         _git_apply_color "$dirty_marker" "color.sh.dirty" "red"
 	elif ! git diff --staged --quiet 2>/dev/null ; then
-		_git_apply_color "$dirty_marker" "color.sh.dirty-staged" "yellow"
+    	_git_apply_color "$dirty_marker" "color.sh.dirty-staged" "yellow"
 	else
 		return 0
 	fi
