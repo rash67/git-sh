@@ -2736,6 +2736,18 @@ _gitk ()
 	__git_complete_revlist
 }
 
+#presto 	
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc prb 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc prb		
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc prbc 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc prbc
+#github generic
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbb 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc rbb
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbbc 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc rbbc
+
+# custom rebase scripts
 complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbc 2>/dev/null \
 	|| complete -o default -o nospace -F __git_refs_rbc rbc		
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
