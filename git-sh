@@ -186,6 +186,7 @@ _git_dirty() {
 	if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
 		return 0
 	fi
+	
 	local dirty_marker="`git config gitsh.dirty 2>/dev/null || echo ' *'`"
 
 	if ! git diff --quiet 2>/dev/null ; then
@@ -2735,6 +2736,18 @@ _gitk ()
 	__git_complete_revlist
 }
 
+#presto 	
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc prb 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc prb		
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc prbc 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc prbc
+#github generic
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbb 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc rbb
+complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbbc 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_rbc rbbc
+
+# custom rebase scripts
 complete -o bashdefault -o default -o nospace -F __git_refs_rbc rbc 2>/dev/null \
 	|| complete -o default -o nospace -F __git_refs_rbc rbc		
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
