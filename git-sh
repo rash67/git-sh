@@ -2735,22 +2735,24 @@ _gitk ()
 	__git_complete_revlist
 }
 
+__add_ref_completion()
+{
+    complete -o bashdefault -o default -o nospace -F __git_refs_helper $1 2>/dev/null \
+	|| complete -o default -o nospace -F __git_refs_helper $1
+
+}
+
 #presto 	
-complete -o bashdefault -o default -o nospace -F __git_refs_helper prb 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper prb		
-complete -o bashdefault -o default -o nospace -F __git_refs_helper prbc 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper prbc
+__add_ref_completion "prb"
+__add_ref_completion "prbc"
+
 #github generic
-complete -o bashdefault -o default -o nospace -F __git_refs_helper gcr 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper gcr
-complete -o bashdefault -o default -o nospace -F __git_refs_helper rbb 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper rbb
-complete -o bashdefault -o default -o nospace -F __git_refs_helper grbc 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper grbc
+__add_ref_completion "gcr"
+__add_ref_completion "rbb"
+__add_ref_completion "grbc"
 
 # custom rebase scripts
-complete -o bashdefault -o default -o nospace -F __git_refs_helper rbc 2>/dev/null \
-	|| complete -o default -o nospace -F __git_refs_helper rbc		
+__add_ref_completion "rbc"
 
 # git, git shorthand (g), and gitk	
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
